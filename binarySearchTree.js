@@ -1,30 +1,30 @@
 //represents each node in the tree
 class Node {
-  constructor(value, left, right){
-    this.value = value;
-    this.left = left || null;
-    this.right = right || null;
+  constructor(value, left, right){ //three data properties
+    this.value = value; //what wa are trying to store
+    this.left = left || null; //pointer to left node
+    this.right = right || null; //pointer to right node
   }
 }
 
-//larger nodes go to the right, smaller values left. 
-class binarySearchTree{
+//larger nodes go to the right, smaller values left. equal nodes dont get added
+ class binarySearchTree{
   constructor(){
-    this.rootNode = null
+    this.rootNode = null; //creates the root node and sets it to null
   }
 
   addNode(value){
-    const node = this.rootNode;
+    const node = this.rootNode; //reference to the root node
 
     //create a new node if this is the first node, based on the value passed in
     if(node === null) {
-      this.rootNode = new Node(value); //set the root Node to the new value we just passed in, so its no longer null
+      this.rootNode = new Node(value); //set the rootNode to the new value we just passed in, so its no longer null
       return; 
     } 
 
     //if it's not the only node we have to figure out where to put the node via a recursive function called searchTree.
     else {
-      const searchTree = function(node ) {
+      const searchTree = function(node) {
         if(value < node.value) { //if passed in value is less than current node's value, pass the node to the left side of the tree
             if(node.left === null) { 
               node.left = new Node(value) //assign node.left to the new Node (put the node on the left side)
@@ -42,12 +42,11 @@ class binarySearchTree{
           }
 
         }else { //if value is not larger or smaller than node than that means they are equal
-          return null; //if equal return null
+          return null; //dont add data to the three
         }
       }; 
+      return searchTree(node); //how we initially call the search tree function, but it can be called w/different nodes as it's going recursively through the three
     }
-
-    return searchTree(node); //how we initially call the search tree function
   }
 
   findMin() {
@@ -67,17 +66,13 @@ class binarySearchTree{
   }
 }
 
-
 // explenation on using addNode() - add 23 if 50 and 17 already exist
 //         50       
 //        /    
 //       17    
 //      
 
-// 1) Its first going to see that the node is nut null becuase we have things in the tree, so it runs line 50's searchTree function with 50 as the root node argument
-// 2) Then its gonna see that the value 23 is less than 50 on line 38 (node.value), so it goes left and uses that nodes value as the argument to searchTree(aka 17)
-// 3) It sees that 23 is more than 17 (the node.value) so it goes right (line 36) to return line 27. It see's that the right node is null, 
-// so it creates a new Node with 23 as the value
-
-
-
+// 1) Its first going to see that the node is nut null becuase we have things in the tree, so it runs line 50's searchTree function with 50 as arg(setting 50 as root)
+// 2) Then its gonna see that the value 23 is less than 50(line 28), so it goes left(line 32) and uses that node.value as the argument to searchTree(aka 17) on line 33.
+// 3) jumps to line 28 and see thats not true. So goes to 36 which is true/see's that 23 is more than 17, so it goes right(line37)
+// 4) It see's that the right node is null(line 37), so it creates a new nodd with 23 as the value (line 38)

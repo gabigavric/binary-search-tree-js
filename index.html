@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>JavaScript Binary Search Demo</title>
+		<script src="binarySearchTree.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+    <h1>JavaScript Binary Search</h1>
+    <p>Results are printed to the console.</p>
+		<script type="text/javascript">
+      const bst = new binarySearchTree();
+      bst.addNode(1);
+      bst.addNode(2);
+      bst.addNode(3);
+      bst.addNode(4);
+      bst.addNode(5);
+      bst.addNode(6);
+      bst.addNode(7);
+      bst.addNode(8);
+      bst.addNode(9);
+      console.log(bst.findMin());
+      console.log(bst.findMax());
+		</script>
+	</body>
+</html>
